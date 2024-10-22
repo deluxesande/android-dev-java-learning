@@ -2,8 +2,10 @@ package me.deluxesande.helloworld;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,13 +15,10 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText firstNameInput;
-    private EditText lastNameInput;
-    private EditText emailInput;
 
-    private TextView firstNameOutput;
-    private TextView lastNameOutput;
-    private TextView emailOutput;
+    EditText username;
+    EditText password;
+    Button loginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,28 +31,19 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        firstNameInput = findViewById(R.id.firstNameInput);
-        lastNameInput = findViewById(R.id.lastNameInput);
-        emailInput = findViewById(R.id.emailInput);
+        username = findViewById(R.id.username);
+        password = findViewById(R.id.password);
+        loginButton = findViewById(R.id.loginButton);
 
-        firstNameOutput = findViewById(R.id.firstNameOutput);
-        lastNameOutput = findViewById(R.id.lastNameOutput);
-        emailOutput = findViewById(R.id.emailOutput);
-    }
-
-    public void processInputData() {
-        // Getting Values from the Input Field
-        String firstName = firstNameInput.getText().toString();
-        String lastName = lastNameInput.getText().toString();
-        String email = emailInput.getText().toString();
-
-        // Setting the Output Field
-        firstNameOutput.setText(firstName);
-        lastNameOutput.setText(lastName);
-        emailOutput.setText(email);
-    }
-
-    public void onButtonClick(View view) {
-        processInputData();
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (username.getText().toString().equals("user") && password.getText().toString().equals("1234")) {
+                    Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }
