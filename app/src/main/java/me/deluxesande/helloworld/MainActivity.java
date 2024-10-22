@@ -1,5 +1,6 @@
 package me.deluxesande.helloworld;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 if (username.getText().toString().equals("user") && password.getText().toString().equals("1234")) {
                     Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                 } else {
@@ -45,5 +46,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void onSignUpClick(View view) {
+        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+        startActivity(intent);
     }
 }
